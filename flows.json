@@ -7,37 +7,6 @@
         "info": ""
     },
     {
-        "id": "6edf640b0d713c8f",
-        "type": "github-webhook",
-        "z": "f6f2187d.f17ca8",
-        "path": "/low-red/webhook",
-        "name": "",
-        "x": 200,
-        "y": 800,
-        "wires": [
-            [
-                "49bae37c5af6b787"
-            ]
-        ]
-    },
-    {
-        "id": "49bae37c5af6b787",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 530,
-        "y": 740,
-        "wires": []
-    },
-    {
         "id": "09a898bdbede2b92",
         "type": "github-webhook",
         "z": "f6f2187d.f17ca8",
