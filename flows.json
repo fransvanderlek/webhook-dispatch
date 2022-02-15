@@ -7,6 +7,14 @@
         "info": ""
     },
     {
+        "id": "7ad180e434652dd7",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "tcp.opc://localhost:12686",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
         "id": "09a898bdbede2b92",
         "type": "github-webhook",
         "z": "f6f2187d.f17ca8",
@@ -35,5 +43,28 @@
         "x": 590,
         "y": 200,
         "wires": []
+    },
+    {
+        "id": "61b65b8325a14ad2",
+        "type": "OpcUa-Client",
+        "z": "f6f2187d.f17ca8",
+        "endpoint": "7ad180e434652dd7",
+        "action": "subscribe",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "",
+        "x": 340,
+        "y": 400,
+        "wires": [
+            []
+        ]
     }
 ]
