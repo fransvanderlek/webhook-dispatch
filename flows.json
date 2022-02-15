@@ -9,7 +9,7 @@
     {
         "id": "7ad180e434652dd7",
         "type": "OpcUa-Endpoint",
-        "endpoint": "tcp.opc://localhost:12686",
+        "endpoint": "opc.tcp://141.144.205.242:12686/milo",
         "secpol": "None",
         "secmode": "None",
         "login": false
@@ -61,10 +61,57 @@
         "securitypolicy": "None",
         "folderName4PKI": "",
         "name": "",
-        "x": 340,
-        "y": 400,
+        "x": 520,
+        "y": 420,
         "wires": [
-            []
+            [
+                "6f820a4259f28914"
+            ]
         ]
+    },
+    {
+        "id": "c04638157a6505cf",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "1",
+        "topic": "ns=2;s=ObjectTypes/ConveyorType.RunningSpeed",
+        "payload": "",
+        "payloadType": "date",
+        "x": 230,
+        "y": 420,
+        "wires": [
+            [
+                "61b65b8325a14ad2"
+            ]
+        ]
+    },
+    {
+        "id": "6f820a4259f28914",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 440,
+        "wires": []
     }
 ]
