@@ -130,6 +130,14 @@
         "className": ""
     },
     {
+        "id": "16baa2e9e2a26a5f",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://213.93.215.205:12020/OPCUA-IoTGateway",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
         "id": "09a898bdbede2b92",
         "type": "github-webhook",
         "z": "f6f2187d.f17ca8",
@@ -206,7 +214,7 @@
         "topic": "ns=2;s=ObjectTypes/ConveyorType.RunningSpeed",
         "payload": "",
         "payloadType": "date",
-        "x": 230,
+        "x": 150,
         "y": 420,
         "wires": [
             [
@@ -274,5 +282,90 @@
         "x": 870,
         "y": 480,
         "wires": []
+    },
+    {
+        "id": "01d25f9f83c0b571",
+        "type": "OpcUa-Client",
+        "z": "f6f2187d.f17ca8",
+        "endpoint": "16baa2e9e2a26a5f",
+        "action": "events",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "",
+        "x": 540,
+        "y": 540,
+        "wires": [
+            [
+                "246153491f4d8fec"
+            ]
+        ]
+    },
+    {
+        "id": "246153491f4d8fec",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "251b6c7ed0b54211",
+        "type": "OpcUa-Event",
+        "z": "f6f2187d.f17ca8",
+        "root": "i=2253",
+        "eventtype": "i=11436",
+        "name": "",
+        "x": 300,
+        "y": 560,
+        "wires": [
+            [
+                "01d25f9f83c0b571"
+            ]
+        ]
+    },
+    {
+        "id": "0af4d691aed50a2c",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 520,
+        "wires": [
+            [
+                "251b6c7ed0b54211"
+            ]
+        ]
     }
 ]
