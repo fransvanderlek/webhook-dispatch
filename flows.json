@@ -134,7 +134,7 @@
     {
         "id": "d23d89d2fc712f18",
         "type": "ui_group",
-        "name": "Default",
+        "name": "Robot Control",
         "tab": "c279f3b14eadf450",
         "order": 1,
         "disp": true,
@@ -194,11 +194,13 @@
     {
         "id": "847d9696692a9865",
         "type": "ui_group",
-        "name": "Group 1",
+        "name": "G1",
         "tab": "c279f3b14eadf450",
         "order": 2,
         "disp": true,
-        "width": 6
+        "width": "6",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "d2bce43ada4f6fd3",
@@ -228,6 +230,17 @@
         "name": "G4",
         "tab": "c279f3b14eadf450",
         "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b5e251c682629067",
+        "type": "ui_group",
+        "name": "Conveyor",
+        "tab": "c279f3b14eadf450",
+        "order": 6,
         "disp": true,
         "width": "6",
         "collapse": false,
@@ -401,7 +414,8 @@
         "wires": [
             [
                 "246153491f4d8fec",
-                "ce442c0299791dfb"
+                "ce442c0299791dfb",
+                "1f230f861fb705ac"
             ]
         ]
     },
@@ -1113,6 +1127,173 @@
         "className": "",
         "x": 1030,
         "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "1f230f861fb705ac",
+        "type": "OpcUa-Method",
+        "z": "f6f2187d.f17ca8",
+        "endpoint": "7ad180e434652dd7",
+        "objectId": "ns=2;s=IntelligentIndustry/Conveyor-1",
+        "methodId": "ns=2;s=IntelligentIndustry/conveyor_start()",
+        "name": "start conveyor",
+        "inputArguments": [],
+        "outputArguments": [],
+        "arg0name": "",
+        "arg0type": "",
+        "arg0typeid": "",
+        "arg0value": "",
+        "arg1name": "",
+        "arg1type": "",
+        "arg1typeid": "",
+        "arg1value": "",
+        "arg2name": "",
+        "arg2type": "",
+        "arg2typeid": "",
+        "arg2value": "",
+        "out0name": "",
+        "out0type": "",
+        "out0typeid": "",
+        "out0value": "",
+        "x": 1060,
+        "y": 1300,
+        "wires": [
+            [
+                "d03012cf5f74f69f"
+            ]
+        ]
+    },
+    {
+        "id": "a98031e348811b23",
+        "type": "OpcUa-Client",
+        "z": "f6f2187d.f17ca8",
+        "endpoint": "7ad180e434652dd7",
+        "action": "subscribe",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": "100",
+        "timeUnit": "ms",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "coveyor subscriber",
+        "x": 670,
+        "y": 1540,
+        "wires": [
+            [
+                "00f7d5fbcebbda53",
+                "46745c01088a4db7"
+            ]
+        ]
+    },
+    {
+        "id": "2636bf883afc5f32",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "conveyor running speed selector",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "ns=2;s=ObjectTypes/ConveyorType.RunningSpeed",
+        "payload": "",
+        "payloadType": "date",
+        "x": 360,
+        "y": 1500,
+        "wires": [
+            [
+                "a98031e348811b23"
+            ]
+        ]
+    },
+    {
+        "id": "00f7d5fbcebbda53",
+        "type": "ui_chart",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "b5e251c682629067",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "running speed chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "40",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1180,
+        "y": 1500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "46745c01088a4db7",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "b5e251c682629067",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "current running speed",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1160,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "d03012cf5f74f69f",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "b5e251c682629067",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "conveyor start",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1260,
+        "y": 1420,
         "wires": []
     },
     {
